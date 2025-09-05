@@ -1,10 +1,8 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
-const authController = require('../controllers/auth.controller');
 
-router.post('/register', authController.register);
-router.post('/login', authController.login);
+// Ruta POST para login
 router.post('/login', (req, res) => {
   const { usuario, contraseña } = req.body;
 
@@ -17,6 +15,5 @@ router.post('/login', (req, res) => {
 
   res.status(401).json({ error: 'Credenciales inválidas' });
 });
-
 
 module.exports = router;

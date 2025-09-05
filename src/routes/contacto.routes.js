@@ -1,6 +1,6 @@
 import express from 'express';
 import { getAll, getOne, create, update, remove } from '../controllers/contacto.controller.js';
-import { verificarToken } from '../middlewares/auth.js';
+import { verificarToken } from '../middleware/auth.js';
 
 
 const router = express.Router();
