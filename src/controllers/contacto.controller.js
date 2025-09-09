@@ -1,14 +1,16 @@
 import Contacto from '../models/contacto.model.js';
 
-export const obtenerContactos = async (req, res) => {
+export async function obtenerContactos(req, res) {
   try {
     const contactos = await Contacto.findAll();
     res.json(contactos);
   } catch (error) {
+    console.error('Error al obtener contactos:', error);
     res.status(500).json({ error: 'Error al obtener contactos' });
   }
-
+  
 };
+  
 
 export const getOne = async (req, res) => {
   try {
@@ -32,6 +34,7 @@ export const crearContacto = async (req, res) => {
 };
 
 export const actualizarContacto = async (req, res) => {
+  console.log('PUT recibido');
   try {
     const contacto = await Contacto.findByPk(req.params.id);
     if (!contacto) return res.status(404).json({ error: 'Contacto no encontrado' });
