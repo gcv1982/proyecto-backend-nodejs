@@ -1,12 +1,13 @@
 import Contacto from '../models/contacto.model.js';
 
-export const getAll = async (req, res) => {
+export const obtenerContactos = async (req, res) => {
   try {
     const contactos = await Contacto.findAll();
     res.json(contactos);
   } catch (error) {
     res.status(500).json({ error: 'Error al obtener contactos' });
   }
+
 };
 
 export const getOne = async (req, res) => {
@@ -19,7 +20,7 @@ export const getOne = async (req, res) => {
   }
 };
 
-export const create = async (req, res) => {
+export const crearContacto = async (req, res) => {
   try {
     const { nombre, telefono, email } = req.body;
     const nuevo = await Contacto.create({ nombre, telefono, email });
@@ -27,9 +28,10 @@ export const create = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Error al crear contacto' });
   }
+
 };
 
-export const update = async (req, res) => {
+export const actualizarContacto = async (req, res) => {
   try {
     const contacto = await Contacto.findByPk(req.params.id);
     if (!contacto) return res.status(404).json({ error: 'Contacto no encontrado' });
@@ -40,9 +42,10 @@ export const update = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Error al actualizar contacto' });
   }
+
 };
 
-export const remove = async (req, res) => {
+export const eliminarContacto = async (req, res) => {
   try {
     const contacto = await Contacto.findByPk(req.params.id);
     if (!contacto) return res.status(404).json({ error: 'Contacto no encontrado' });
@@ -52,4 +55,5 @@ export const remove = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Error al eliminar contacto' });
   }
+
 };

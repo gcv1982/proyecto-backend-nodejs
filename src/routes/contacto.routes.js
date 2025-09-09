@@ -1,16 +1,17 @@
-import express from 'express';
-import { getAll, getOne, create, update, remove } from '../controllers/contacto.controller.js';
-import { verificarToken } from '../middleware/auth.js';
 
+import { Router } from 'express';
+import {
+  obtenerContactos,
+  crearContacto,
+  actualizarContacto,
+  eliminarContacto
+} from '../controllers/contacto.controller.js';
 
-const router = express.Router();
+const router = Router();
 
-
-router.get('/', verificarToken, getAll);
-router.get('/', getAll);
-router.get('/:id', getOne);
-router.post('/', create);
-router.put('/:id', update);
-router.delete('/:id', remove);
+router.get('/', obtenerContactos);
+router.post('/', crearContacto);
+router.put('/:id', actualizarContacto);
+router.delete('/:id', eliminarContacto);
 
 export default router;
